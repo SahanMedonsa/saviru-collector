@@ -24,10 +24,9 @@ class _MyAppState extends State<MyApp> {
                   fontSize: 20,
                   color: Colors.white,
                   fontWeight: FontWeight.w600),
-              color: Colors.green,
+              color: ColorPalette.Jungle_Green,
               iconTheme: IconThemeData(color: Colors.white)),
           bottomNavigationBarTheme: BottomNavigationBarThemeData(
-              backgroundColor: Colors.amber,
               selectedIconTheme:
                   IconThemeData(color: ColorPalette.appBar_color),
               unselectedIconTheme:

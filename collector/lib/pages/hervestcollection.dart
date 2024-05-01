@@ -15,7 +15,12 @@ class _CollectionState extends State<Collection> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Collector'),
-        actions: [Icon(Icons.search)],
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 15),
+            child: Icon(Icons.search),
+          )
+        ],
       ),
     );
   }

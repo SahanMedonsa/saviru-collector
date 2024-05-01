@@ -41,7 +41,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
         child: widget.navigationShell,
       ),
       bottomNavigationBar: SlidingClippedNavBar(
-        backgroundColor: Colors.green.shade100,
+        backgroundColor: ColorPalette.Jungle_Green,
         selectedIndex: selectedIndex,
         onButtonPressed: (int index) {
           setState(() {
@@ -49,8 +49,8 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
           });
           _goToBranch(selectedIndex);
         },
-        inactiveColor: ColorPalette.appBar_color,
-        activeColor: ColorPalette.appBar_color,
+        inactiveColor: Colors.white,
+        activeColor: Colors.white,
         iconSize: 30,
         barItems: [
           BarItem(
