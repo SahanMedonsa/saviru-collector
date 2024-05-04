@@ -3,6 +3,7 @@ import 'package:collector/pages/Farmers.dart';
 import 'package:collector/pages/distributor.dart';
 import 'package:collector/pages/farmerinquiry.dart';
 import 'package:collector/pages/hervestcollection.dart';
+import 'package:collector/pages/updateinquiry.dart';
 import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 
@@ -66,14 +67,24 @@ class AppNavigation {
             //vege stat
             StatefulShellBranch(navigatorKey: _rootNavigationVegestat, routes: [
               GoRoute(
-                path: '/vegestatus',
-                name: 'Vegestatus',
-                builder: (context, state) {
-                  return farmereInquiry(
-                    key: state.pageKey,
-                  );
-                },
-              )
+                  path: '/vegestatus',
+                  name: 'Vegestatus',
+                  builder: (context, state) {
+                    return farmereInquiry(
+                      key: state.pageKey,
+                    );
+                  },
+                  routes: [
+                    GoRoute(
+                      path: 'farmerinquiry',
+                      name: 'farmerinquiry',
+                      builder: (context, state) {
+                        return UpdateInquiry(
+                          key: state.pageKey,
+                        );
+                      },
+                    )
+                  ])
             ]),
 
             // // distributor

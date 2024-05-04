@@ -32,7 +32,8 @@ class _MyAppState extends State<MyApp> {
               titleTextStyle: TextStyle(
                   fontSize: 20,
                   color: Colors.white,
-                  fontWeight: FontWeight.w600),
+                  fontWeight: FontWeight.w600,
+                  wordSpacing: 2),
               color: ColorPalette.Jungle_Green,
               iconTheme: IconThemeData(color: Colors.white)),
           elevatedButtonTheme: const ElevatedButtonThemeData(

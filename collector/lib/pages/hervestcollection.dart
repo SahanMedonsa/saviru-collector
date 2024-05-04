@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:collector/components/Colorpallet.dart';
 import 'package:collector/model/FarmerDetailmodel.dart';
 import 'package:collector/service/farmer_db_service.dart';
 import 'package:flutter/material.dart';
@@ -48,7 +49,15 @@ class _farmersState extends State<Collection> {
                   },
                   child: Card(
                     child: ListTile(
-                      title: Text(farmer.firstname),
+                      tileColor: ColorPalette.forest_Green.withOpacity(0.2),
+                      title: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(farmer.firstname + farmer.lastname),
+                          Text(farmer.phonenum.toString())
+                        ],
+                      ),
+                      subtitle: Text(farmer.nic),
                     ),
                   ),
                 ));
