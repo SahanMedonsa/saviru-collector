@@ -1,4 +1,5 @@
 import 'package:collector/navbar/NavigationBar.dart';
+import 'package:collector/pages/Farmers.dart';
 import 'package:collector/pages/distributor.dart';
 import 'package:collector/pages/farmerinquiry.dart';
 import 'package:collector/pages/hervestcollection.dart';
@@ -42,14 +43,24 @@ class AppNavigation {
             //Home
             StatefulShellBranch(navigatorKey: _rootNavigationHome, routes: [
               GoRoute(
-                path: '/home',
-                name: 'Home',
-                builder: (context, state) {
-                  return Collection(
-                    key: state.pageKey,
-                  );
-                },
-              )
+                  path: '/home',
+                  name: 'Home',
+                  builder: (context, state) {
+                    return Collection(
+                      key: state.pageKey,
+                    );
+                  },
+                  routes: [
+                    GoRoute(
+                      path: 'farmer',
+                      name: 'farmer',
+                      builder: (context, state) {
+                        return farmers(
+                          key: state.pageKey,
+                        );
+                      },
+                    )
+                  ])
             ]),
 
             //vege stat

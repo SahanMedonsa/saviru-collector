@@ -1,4 +1,5 @@
 import 'package:collector/components/Colorpallet.dart';
+import 'package:collector/pages/Farmers.dart';
 import 'package:collector/pages/farmerinquiry.dart';
 import 'package:collector/pages/hervestcollection.dart';
 import 'package:flutter/material.dart';
