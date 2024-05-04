@@ -19,6 +19,12 @@ class _farmersState extends State<Collection> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Collector'),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 15),
+            child: Icon(Icons.search),
+          )
+        ],
       ),
       body: StreamBuilder(
         stream: _farmerdb.getfarmers(),

@@ -25,12 +25,6 @@ class _CollectionState extends State<farmers> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Farmer Collector'),
-        actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 15),
-            child: Icon(Icons.search),
-          )
-        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
