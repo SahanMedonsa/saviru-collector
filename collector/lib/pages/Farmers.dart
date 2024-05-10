@@ -1,27 +1,51 @@
-import 'package:collector/components/Gtext.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class farmers extends StatefulWidget {
-  const farmers({super.key});
+  const farmers({Key? key}) : super(key: key);
 
   @override
   State<farmers> createState() => _CollectionState();
 }
 
 class _CollectionState extends State<farmers> {
-  // Define variables to hold form field values
-  String _textField1Value = '';
+  late TextEditingController _carrotController;
+  late TextEditingController _potatoController;
+  late TextEditingController _cabbageController;
+  late TextEditingController _capsicumController;
+  late TextEditingController _beansController;
+  late TextEditingController _dateController;
+
   String _textField2Value = '';
 
-  // List of dropdown items
-  List<String> _dropdownItems1 = ['Carrot', 'Carbadge', 'Capcicum'];
-  List<String> _dropdownItems2 = ['A', 'B', 'C'];
+  String dropdownValue2 = 'A';
+
+  @override
+  void initState() {
+    super.initState();
+    // Initialize the date controller with the current date
+    _dateController = TextEditingController(text: _getCurrentDate());
+    _carrotController = TextEditingController();
+    _potatoController = TextEditingController();
+    _cabbageController = TextEditingController();
+    _capsicumController = TextEditingController();
+    _beansController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    // Dispose the controller when the widget is disposed
+    _dateController.dispose();
+    super.dispose();
+  }
+
+  String _getCurrentDate() {
+    // Get current date formatted as 'yyyy-MM-dd'
+    return DateFormat('yyyy-MM-dd').format(DateTime.now());
+  }
 
   @override
   Widget build(BuildContext context) {
-    String dropdownValue1 = _dropdownItems1.first;
-    String dropdownValue2 = _dropdownItems2.first;
-
     return Scaffold(
       appBar: AppBar(
         title: Text('Farmer Collector'),
@@ -31,74 +55,168 @@ class _CollectionState extends State<farmers> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Gtext(
-              text: 'Farmer name',
-              tsize: 16,
-              tcolor: Colors.black,
-              fweight: FontWeight.w500,
+            Text(
+              'Daily Collection',
+              style: TextStyle(
+                fontSize: 18,
+                color: Colors.black,
+                fontWeight: FontWeight.w600,
+              ),
             ),
             SizedBox(height: 16.0),
             Form(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  // Text Field 1
                   TextFormField(
-                    decoration: InputDecoration(labelText: 'Name'),
-                    onChanged: (value) {
-                      setState(() {
-                        _textField1Value = value;
-                      });
-                    },
-                  ),
-                  SizedBox(height: 16.0),
-
-                  // Text Field 2
-                  TextFormField(
+                    controller: _dateController,
                     decoration: InputDecoration(labelText: 'Date'),
                     onChanged: (value) {
-                      setState(() {
-                        _textField2Value = value;
-                      });
+                      // Handle onChanged event if needed
                     },
                   ),
                   SizedBox(height: 16.0),
-
-                  // Dropdown 1
-                  DropdownButtonFormField<String>(
-                    value: dropdownValue1,
-                    items: _dropdownItems1.map((item1) {
-                      return DropdownMenuItem<String>(
-                        value: item1,
-                        child: Text(item1),
-                      );
-                    }).toList(),
-                    onChanged: (value) {
-                      setState(() {
-                        dropdownValue1 = value ?? '';
-                      });
-                    },
-                    decoration: InputDecoration(labelText: 'Vegetable'),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Container(
+                        width: 250,
+                        child: TextField(
+                          controller: _carrotController,
+                          decoration:
+                              InputDecoration(labelText: 'Carrot Amount (kg)'),
+                          keyboardType: TextInputType.number,
+                        ),
+                      ),
+                      DropdownButton<String>(
+                        value: dropdownValue2,
+                        items: ['A', 'B', 'C'].map((item) {
+                          return DropdownMenuItem<String>(
+                            value: item,
+                            child: Text(item),
+                          );
+                        }).toList(),
+                        onChanged: (value) {
+                          setState(() {
+                            dropdownValue2 = value ?? '';
+                          });
+                        },
+                      ),
+                    ],
                   ),
-
-                  // Dropdown 2
-                  DropdownButtonFormField(
-                    value: dropdownValue2,
-                    items: _dropdownItems2.map((item2) {
-                      return DropdownMenuItem(
-                        value: item2,
-                        child: Text(item2),
-                      );
-                    }).toList(),
-                    onChanged: (value) {
-                      setState(() {
-                        dropdownValue2 = value.toString();
-                      });
-                    },
-                    decoration: InputDecoration(labelText: 'Grade'),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Container(
+                        width: 250,
+                        child: TextField(
+                          controller: _potatoController,
+                          decoration:
+                              InputDecoration(labelText: 'Potato Amount (kg)'),
+                          keyboardType: TextInputType.number,
+                        ),
+                      ),
+                      DropdownButton<String>(
+                        value: dropdownValue2,
+                        items: ['A', 'B', 'C'].map((item) {
+                          return DropdownMenuItem<String>(
+                            value: item,
+                            child: Text(item),
+                          );
+                        }).toList(),
+                        onChanged: (value) {
+                          setState(() {
+                            dropdownValue2 = value ?? '';
+                          });
+                        },
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Container(
+                        width: 250,
+                        child: TextField(
+                          controller: _cabbageController,
+                          decoration:
+                              InputDecoration(labelText: 'Cabbage Amount (kg)'),
+                          keyboardType: TextInputType.number,
+                        ),
+                      ),
+                      DropdownButton<String>(
+                        value: dropdownValue2,
+                        items: ['A', 'B', 'C'].map((item) {
+                          return DropdownMenuItem<String>(
+                            value: item,
+                            child: Text(item),
+                          );
+                        }).toList(),
+                        onChanged: (value) {
+                          setState(() {
+                            dropdownValue2 = value ?? '';
+                          });
+                        },
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Container(
+                        width: 250,
+                        child: TextField(
+                          controller: _capsicumController,
+                          decoration: InputDecoration(
+                              labelText: 'Capsicum Amount (kg)'),
+                          keyboardType: TextInputType.number,
+                        ),
+                      ),
+                      DropdownButton<String>(
+                        value: dropdownValue2,
+                        items: ['A', 'B', 'C'].map((item) {
+                          return DropdownMenuItem<String>(
+                            value: item,
+                            child: Text(item),
+                          );
+                        }).toList(),
+                        onChanged: (value) {
+                          setState(() {
+                            dropdownValue2 = value ?? '';
+                          });
+                        },
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Container(
+                        width: 250,
+                        child: TextField(
+                          controller: _beansController,
+                          decoration:
+                              InputDecoration(labelText: 'Beans Amount (kg)'),
+                          keyboardType: TextInputType.number,
+                        ),
+                      ),
+                      DropdownButton<String>(
+                        value: dropdownValue2,
+                        items: ['A', 'B', 'C'].map((item) {
+                          return DropdownMenuItem<String>(
+                            value: item,
+                            child: Text(item),
+                          );
+                        }).toList(),
+                        onChanged: (value) {
+                          setState(() {
+                            dropdownValue2 = value ?? '';
+                          });
+                        },
+                      ),
+                    ],
                   ),
                   SizedBox(height: 16.0),
-
                   TextFormField(
                     decoration: InputDecoration(labelText: 'Expected price'),
                     onChanged: (value) {
@@ -108,14 +226,14 @@ class _CollectionState extends State<farmers> {
                     },
                   ),
                   SizedBox(height: 32.0),
-
-                  // Submit Button
                   ElevatedButton(
                     onPressed: () {
                       // Handle form submission here
                       print('Form submitted');
-                      print('Text Field 1: $_textField1Value');
-                      print('Text Field 2: $_textField2Value');
+                      print('Name: $_textField2Value');
+                      print('Date: ${_dateController.text}');
+
+                      print('Grade: $dropdownValue2');
                     },
                     child: Text('Submit'),
                   ),

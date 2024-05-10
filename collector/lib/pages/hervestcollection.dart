@@ -53,7 +53,7 @@ class _farmersState extends State<Collection> {
                       title: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(farmer.firstname + farmer.lastname),
+                          Text(farmer.firstname + " " + farmer.lastname),
                           Text(farmer.phonenum.toString())
                         ],
                       ),

@@ -42,27 +42,20 @@ class _farmereInquiryState extends State<UpdateInquiry> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              SizedBox(height: 20.0),
               Gtext(
                 text: 'Vegetables expected to be grown in the next season',
                 tsize: 18,
                 tcolor: Colors.black,
                 fweight: FontWeight.w700,
               ),
-              SizedBox(height: 16.0),
+              SizedBox(height: 20.0),
               Form(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     TextFormField(
-                      decoration: InputDecoration(labelText: 'Farmer UID'),
-                      onChanged: (value) {
-                        setState(() {
-                          _textField2Value = value;
-                        });
-                      },
-                    ),
-                    TextFormField(
-                      decoration: InputDecoration(labelText: 'Date'),
+                      decoration: InputDecoration(labelText: 'Expected month'),
                       onChanged: (value) {
                         setState(() {
                           _textField2Value = value;
@@ -70,7 +63,7 @@ class _farmereInquiryState extends State<UpdateInquiry> {
                       },
                     ),
 
-                    SizedBox(height: 16.0),
+                    SizedBox(height: 20.0),
 
                     DropdownButtonFormField<String>(
                       value: dropdownValue1,
@@ -88,7 +81,17 @@ class _farmereInquiryState extends State<UpdateInquiry> {
                       decoration:
                           InputDecoration(labelText: 'Expected Vegetable'),
                     ),
-                    SizedBox(height: 16.0),
+                    SizedBox(height: 20.0),
+                    TextFormField(
+                      decoration:
+                          InputDecoration(labelText: 'Expected growing area '),
+                      onChanged: (value) {
+                        setState(() {
+                          _textField2Value = value;
+                        });
+                      },
+                    ),
+                    SizedBox(height: 20.0),
                     DropdownButtonFormField<String>(
                       value: dropdownValue2,
                       items: _dropdownItems2.map((item1) {
@@ -104,7 +107,7 @@ class _farmereInquiryState extends State<UpdateInquiry> {
                       },
                       decoration: InputDecoration(labelText: 'Soil type'),
                     ),
-                    SizedBox(height: 16.0),
+                    SizedBox(height: 20.0),
                     DropdownButtonFormField<String>(
                       value: dropdownValue3,
                       items: _dropdownItems3.map((item1) {
@@ -120,7 +123,7 @@ class _farmereInquiryState extends State<UpdateInquiry> {
                       },
                       decoration: InputDecoration(labelText: 'Whether'),
                     ),
-                    SizedBox(height: 16.0),
+                    SizedBox(height: 20.0),
                     DropdownButtonFormField<String>(
                       value: dropdownValue4,
                       items: _dropdownItems4.map((item1) {
@@ -136,7 +139,7 @@ class _farmereInquiryState extends State<UpdateInquiry> {
                       },
                       decoration: InputDecoration(labelText: 'Time period'),
                     ),
-                    SizedBox(height: 16.0),
+                    SizedBox(height: 20.0),
                     TextFormField(
                       decoration: InputDecoration(labelText: 'Fertilizer'),
                       onChanged: (value) {
@@ -146,7 +149,7 @@ class _farmereInquiryState extends State<UpdateInquiry> {
                       },
                     ),
 
-                    SizedBox(height: 32.0),
+                    SizedBox(height: 40.0),
 
                     // Submit Button
                     ElevatedButton(

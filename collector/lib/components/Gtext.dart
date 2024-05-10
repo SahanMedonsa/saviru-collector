@@ -1,3 +1,4 @@
+import 'package:collector/components/Colorpallet.dart';
 import 'package:flutter/material.dart';
 
 class Gtext extends StatelessWidget {
@@ -25,5 +26,39 @@ class Gtext extends StatelessWidget {
       ),
       textAlign: textAlign,
     );
+  }
+}
+
+class Gtextfd extends StatelessWidget {
+  final String text;
+
+  const Gtextfd({
+    super.key,
+    required this.text,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(text,
+        style: TextStyle(
+            color: ColorPalette.appBar_color,
+            fontSize: 16,
+            fontWeight: FontWeight.w400));
+  }
+}
+
+class Gtextnm extends StatelessWidget {
+  final String text;
+
+  const Gtextnm({
+    super.key,
+    required this.text,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(text,
+        style: TextStyle(
+            color: Colors.black, fontSize: 16, fontWeight: FontWeight.normal));
   }
 }
