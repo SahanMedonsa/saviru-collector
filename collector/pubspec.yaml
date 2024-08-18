@@ -38,7 +38,7 @@ dependencies:
   go_router: ^13.2.0
   sliding_clipped_nav_bar: ^3.1.1
   cloud_firestore: ^4.14.0
-  firebase_core: ^2.24.2
+  
   intl: ^0.19.0
 
 dev_dependencies:

@@ -42,10 +42,15 @@ class _farmersState extends State<Collection> {
                 String farmerId = farmers[index].id;
                 // print(farmerId);
 
-                return Expanded(
-                    child: GestureDetector(
+                return GestureDetector(
                   onTap: () {
-                    context.goNamed('farmer');
+                    context.goNamed(
+                      'farmer', // Assuming your route name is 'farmer'
+                      pathParameters: {
+                        'id': farmerId,
+                        'name': farmer.firstname + ' ' + farmer.lastname,
+                      },
+                    );
                   },
                   child: Card(
                     child: ListTile(
@@ -60,7 +65,7 @@ class _farmersState extends State<Collection> {
                       subtitle: Text(farmer.nic),
                     ),
                   ),
-                ));
+                );
               });
         },
       ),

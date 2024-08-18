@@ -93,63 +93,66 @@ class _RestockdataState extends State<Restockdata> {
       ),
       body: Padding(
         padding: EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            DropdownButtonFormField<String>(
-              value: _selectedDistrict,
-              items: ['Kalutara', 'Colombo', 'Matara']
-                  .map((district) => DropdownMenuItem<String>(
-                        value: district,
-                        child: Text(district),
-                      ))
-                  .toList(),
-              onChanged: (value) {
-                setState(() {
-                  _selectedDistrict =
-                      value ?? 'Kalutara'; // Default to Kalutara if null
-                });
-              },
-              decoration: InputDecoration(
-                labelText: 'Select District',
+        child: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              DropdownButtonFormField<String>(
+                value: _selectedDistrict,
+                items: ['Kalutara', 'Colombo', 'Matara']
+                    .map((district) => DropdownMenuItem<String>(
+                          value: district,
+                          child: Text(district),
+                        ))
+                    .toList(),
+                onChanged: (value) {
+                  setState(() {
+                    _selectedDistrict =
+                        value ?? 'Kalutara'; // Default to Kalutara if null
+                  });
+                },
+                decoration: InputDecoration(
+                  labelText: 'Select District',
+                ),
               ),
-            ),
-            SizedBox(height: 20.0),
-            TextField(
-              controller: _carrotController,
-              decoration: InputDecoration(labelText: 'Carrot Amount (kg)'),
-              keyboardType: TextInputType.number,
-            ),
-            SizedBox(height: 20.0),
-            TextField(
-              controller: _potatoController,
-              decoration: InputDecoration(labelText: 'Potato Amount (kg)'),
-              keyboardType: TextInputType.number,
-            ),
-            SizedBox(height: 20.0),
-            TextField(
-              controller: _cabbageController,
-              decoration: InputDecoration(labelText: 'Cabbage Amount (kg)'),
-              keyboardType: TextInputType.number,
-            ),
-            SizedBox(height: 20.0),
-            TextField(
-              controller: _capsicumController,
-              decoration: InputDecoration(labelText: 'Capsicum Amount (kg)'),
-              keyboardType: TextInputType.number,
-            ),
-            SizedBox(height: 20.0),
-            TextField(
-              controller: _beansController,
-              decoration: InputDecoration(labelText: 'Beans Amount (kg)'),
-              keyboardType: TextInputType.number,
-            ),
-            SizedBox(height: 40.0),
-            ElevatedButton(
-              onPressed: _submitForm,
-              child: Text('Submit'),
-            ),
-          ],
+              SizedBox(height: 20.0),
+              TextField(
+                controller: _carrotController,
+                decoration: InputDecoration(labelText: 'Carrot Amount (kg)'),
+                keyboardType: TextInputType.number,
+              ),
+              SizedBox(height: 20.0),
+              TextField(
+                controller: _potatoController,
+                decoration: InputDecoration(labelText: 'Potato Amount (kg)'),
+                keyboardType: TextInputType.number,
+              ),
+              SizedBox(height: 20.0),
+              TextField(
+                controller: _cabbageController,
+                decoration: InputDecoration(labelText: 'Cabbage Amount (kg)'),
+                keyboardType: TextInputType.number,
+              ),
+              SizedBox(height: 20.0),
+              TextField(
+                controller: _capsicumController,
+                decoration: InputDecoration(labelText: 'Capsicum Amount (kg)'),
+                keyboardType: TextInputType.number,
+              ),
+              SizedBox(height: 20.0),
+              TextField(
+                controller: _beansController,
+                decoration: InputDecoration(labelText: 'Beans Amount (kg)'),
+                keyboardType: TextInputType.number,
+              ),
+              SizedBox(height: 40.0),
+              ElevatedButton(
+                onPressed: _submitForm,
+                child: Text('Submit'),
+              ),
+            ],
+          ),
         ),
       ),
     );

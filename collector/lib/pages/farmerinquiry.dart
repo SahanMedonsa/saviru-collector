@@ -42,25 +42,24 @@ class _farmersState extends State<farmereInquiry> {
                 String farmerId = farmers[index].id;
                 // print(farmerId);
 
-                return Expanded(
-                    child: GestureDetector(
-                  onTap: () {
-                    context.goNamed('farmerinquiry');
-                  },
-                  child: Card(
-                    child: ListTile(
-                      tileColor: ColorPalette.forest_Green.withOpacity(0.2),
-                      title: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(farmer.firstname + farmer.lastname),
-                          Text(farmer.phonenum.toString())
-                        ],
-                      ),
-                      subtitle: Text(farmer.nic),
-                    ),
+                return GestureDetector(
+                                  onTap: () {
+                context.goNamed('farmerinquiry');
+                                  },
+                                  child: Card(
+                child: ListTile(
+                  tileColor: ColorPalette.forest_Green.withOpacity(0.2),
+                  title: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(farmer.firstname + farmer.lastname),
+                      Text(farmer.phonenum.toString())
+                    ],
                   ),
-                ));
+                  subtitle: Text(farmer.nic),
+                ),
+                                  ),
+                                );
               });
         },
       ),
