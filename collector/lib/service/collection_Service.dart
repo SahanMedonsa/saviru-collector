@@ -26,30 +26,7 @@ class FirebaseService {
     }
   }
 
-  // Future<List<Map<String, dynamic>>> getDailyCollections(String farmerId) async {
-  //   List<Map<String, dynamic>> dailyCollectionList = [];
-
-  //   try {
-  //     // Reference to the "Daily Collection" sub-collection
-  //     CollectionReference dailyCollection = _firestore
-  //         .collection('farmer')
-  //         .doc(farmerId)
-  //         .collection('Daily Collection');
-
-  //     // Get the documents in the "Daily Collection" sub-collection
-  //     QuerySnapshot querySnapshot = await dailyCollection.get();
-
-  //     for (var doc in querySnapshot.docs) {
-  //       dailyCollectionList.add(doc.data() as Map<String, dynamic>);
-  //     }
-
-  //     print('Daily Collections retrieved successfully');
-  //   } catch (e) {
-  //     print('Error retrieving daily collections: $e');
-  //   }
-
-  //   return dailyCollectionList;
-  // }
+ 
 
   Future<List<Map<String, dynamic>>> getDailyCollections(String farmerId) async {
   List<Map<String, dynamic>> dailyCollectionList = [];

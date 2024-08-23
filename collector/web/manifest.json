@@ -1,6 +1,6 @@
 {
-    "name": "collector",
-    "short_name": "collector",
+    "name": "fertilizerapp",
+    "short_name": "fertilizerapp",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
