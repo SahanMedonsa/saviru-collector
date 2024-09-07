@@ -84,30 +84,22 @@ class _CollectionState extends State<Farmers> {
                   Row(
                     children: [
                       Expanded(
-                        child: DropdownButton<String>(
-                          isExpanded: true,
-                          value:
-                              dropdownVegetable, // This will display the currently selected vegetable
-                          hint: Text('Select Vegetable'),
-                          items: [
-                            'Carrot',
-                            'Potato',
-                            'Cabbage',
-                            'Capsicum',
-                            'Beans'
-                          ].map((vegetable) {
-                            return DropdownMenuItem<String>(
+                        child: DropdownButtonFormField<String>(
+                    hint: Text('Select Vegetable'),
+                    value: dropdownVegetable,
+                    isExpanded: true,
+                    items: ['Carrot', 'Potato', 'Cabbage', 'Capsicum', 'Beans']
+                        .map((vegetable) => DropdownMenuItem<String>(
                               value: vegetable,
                               child: Text(vegetable),
-                            );
-                          }).toList(),
-                          onChanged: (value) {
-                            setState(() {
-                              dropdownVegetable =
-                                  value; // Updates the selected vegetable
-                            });
-                          },
-                        ),
+                            ))
+                        .toList(),
+                    onChanged: (value) {
+                      setState(() {
+                        dropdownVegetable = value;
+                      });
+                    },
+                  ),
                       ),
                       SizedBox(width: 8.0),
                       Expanded(
