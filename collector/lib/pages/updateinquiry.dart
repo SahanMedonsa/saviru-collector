@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collector/components/Gtext.dart';
 import 'package:flutter/material.dart';
 
@@ -13,24 +14,81 @@ class _farmereInquiryState extends State<UpdateInquiry> {
   String _textField1Value = '';
   String _textField2Value = '';
 
+  // Dropdown values
+  String dropdownValue1 = 'Carrot';
+  String dropdownValue2 = 'Dry soil';
+  String dropdownValue3 = 'Sunny';
+  String dropdownValue4 = '1';
+
   // List of dropdown items
-  List<String> _dropdownItems1 = ['Carrot', 'Carbadge', 'Capcicum'];
+  List<String> _dropdownItems1 = ['Carrot', 'Carbage', 'Capsicum'];
   List<String> _dropdownItems2 = [
-    'Dry soil ',
+    'Dry soil',
     'Clay soil',
     'Sandy soil',
-    'loang soil'
+    'Loamy soil'
   ];
   List<String> _dropdownItems3 = ['Sunny', 'Rainy', 'Windy', 'Cloudy'];
   List<String> _dropdownItems4 = ['1', '2', '3', '4', '5', '6'];
 
+  Future<void> _submitData() async {
+    try {
+      await FirebaseFirestore.instance.collection('inquiry').add({
+        'expected_month': _textField2Value,
+        'expected_vegetable': dropdownValue1,
+        'growing_area': _textField1Value, // Use expected growing area input
+        'soil_type': dropdownValue2,
+        'weather': dropdownValue3,
+        'time_period': dropdownValue4,
+        'fertilizer': _textField1Value,
+      });
+      
+      // Show success dialog
+      _showDialog('Success', 'Data submitted successfully!');
+
+      // Clear all fields
+      _clearFields();
+    } catch (e) {
+      print('Error submitting data: $e');
+      _showDialog('Error', 'Could not submit data. Please try again.');
+    }
+  }
+
+  // Function to show alert dialog
+  void _showDialog(String title, String message) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(title),
+          content: Text(message),
+          actions: <Widget>[
+            ElevatedButton(
+              child: Text('OK'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  // Function to clear all fields
+  void _clearFields() {
+    setState(() {
+      _textField1Value = '';
+      _textField2Value = '';
+      dropdownValue1 = 'Carrot';
+      dropdownValue2 = 'Dry soil';
+      dropdownValue3 = 'Sunny';
+      dropdownValue4 = '1';
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    String dropdownValue1 = _dropdownItems1.first;
-    String dropdownValue2 = _dropdownItems2.first;
-    String dropdownValue3 = _dropdownItems3.first;
-    String dropdownValue4 = _dropdownItems4.first;
-
     return Scaffold(
       appBar: AppBar(
         title: Text('Farmer Inquiry'),
@@ -38,7 +96,6 @@ class _farmereInquiryState extends State<UpdateInquiry> {
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: SingleChildScrollView(
-          scrollDirection: Axis.vertical,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -62,9 +119,7 @@ class _farmereInquiryState extends State<UpdateInquiry> {
                         });
                       },
                     ),
-
                     SizedBox(height: 20.0),
-
                     DropdownButtonFormField<String>(
                       value: dropdownValue1,
                       items: _dropdownItems1.map((item1) {
@@ -75,19 +130,17 @@ class _farmereInquiryState extends State<UpdateInquiry> {
                       }).toList(),
                       onChanged: (value) {
                         setState(() {
-                          dropdownValue1 = value ?? '';
+                          dropdownValue1 = value ?? dropdownValue1; // Keep current if null
                         });
                       },
-                      decoration:
-                          InputDecoration(labelText: 'Expected Vegetable'),
+                      decoration: InputDecoration(labelText: 'Expected Vegetable'),
                     ),
                     SizedBox(height: 20.0),
                     TextFormField(
-                      decoration:
-                          InputDecoration(labelText: 'Expected growing area '),
+                      decoration: InputDecoration(labelText: 'Expected growing area'),
                       onChanged: (value) {
                         setState(() {
-                          _textField2Value = value;
+                          _textField1Value = value; // Changed to hold area input
                         });
                       },
                     ),
@@ -102,7 +155,7 @@ class _farmereInquiryState extends State<UpdateInquiry> {
                       }).toList(),
                       onChanged: (value) {
                         setState(() {
-                          dropdownValue1 = value ?? '';
+                          dropdownValue2 = value ?? dropdownValue2; // Keep current if null
                         });
                       },
                       decoration: InputDecoration(labelText: 'Soil type'),
@@ -118,10 +171,10 @@ class _farmereInquiryState extends State<UpdateInquiry> {
                       }).toList(),
                       onChanged: (value) {
                         setState(() {
-                          dropdownValue1 = value ?? '';
+                          dropdownValue3 = value ?? dropdownValue3; // Keep current if null
                         });
                       },
-                      decoration: InputDecoration(labelText: 'Whether'),
+                      decoration: InputDecoration(labelText: 'Weather'),
                     ),
                     SizedBox(height: 20.0),
                     DropdownButtonFormField<String>(
@@ -134,7 +187,7 @@ class _farmereInquiryState extends State<UpdateInquiry> {
                       }).toList(),
                       onChanged: (value) {
                         setState(() {
-                          dropdownValue1 = value ?? '';
+                          dropdownValue4 = value ?? dropdownValue4; // Keep current if null
                         });
                       },
                       decoration: InputDecoration(labelText: 'Time period'),
@@ -144,20 +197,15 @@ class _farmereInquiryState extends State<UpdateInquiry> {
                       decoration: InputDecoration(labelText: 'Fertilizer'),
                       onChanged: (value) {
                         setState(() {
-                          _textField2Value = value;
+                          _textField1Value = value; // Storing fertilizer input
                         });
                       },
                     ),
-
                     SizedBox(height: 40.0),
-
                     // Submit Button
                     ElevatedButton(
                       onPressed: () {
-                        // Handle form submission here
-                        print('Form submitted');
-                        print('Text Field 1: $_textField1Value');
-                        print('Text Field 2: $_textField2Value');
+                        _submitData(); // Call submit data function
                       },
                       child: Text('Submit'),
                     ),
