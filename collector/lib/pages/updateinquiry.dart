@@ -13,6 +13,8 @@ class _farmereInquiryState extends State<UpdateInquiry> {
   // Define variables to hold form field values
   String _textField1Value = '';
   String _textField2Value = '';
+   String _textField3Value = '';
+  String _fid='';
 
   // Dropdown values
   String dropdownValue1 = 'Carrot';
@@ -31,6 +33,19 @@ class _farmereInquiryState extends State<UpdateInquiry> {
   List<String> _dropdownItems3 = ['Sunny', 'Rainy', 'Windy', 'Cloudy'];
   List<String> _dropdownItems4 = ['1', '2', '3', '4', '5', '6'];
 
+  void _clearFields() {
+  setState(() {
+    _textField1Value = '';
+    _textField2Value = '';
+    _textField3Value = '';
+    _fid = '';
+    dropdownValue1 = 'Carrot';
+    dropdownValue2 = 'Dry soil';
+    dropdownValue3 = 'Sunny';
+    dropdownValue4 = '1';
+  });
+}
+
   Future<void> _submitData() async {
     try {
       await FirebaseFirestore.instance.collection('inquiry').add({
@@ -40,7 +55,8 @@ class _farmereInquiryState extends State<UpdateInquiry> {
         'soil_type': dropdownValue2,
         'weather': dropdownValue3,
         'time_period': dropdownValue4,
-        'fertilizer': _textField1Value,
+        'fertilizer': _textField3Value,
+        'fID': _fid,
       });
       
       // Show success dialog
@@ -75,17 +91,7 @@ class _farmereInquiryState extends State<UpdateInquiry> {
     );
   }
 
-  // Function to clear all fields
-  void _clearFields() {
-    setState(() {
-      _textField1Value = '';
-      _textField2Value = '';
-      dropdownValue1 = 'Carrot';
-      dropdownValue2 = 'Dry soil';
-      dropdownValue3 = 'Sunny';
-      dropdownValue4 = '1';
-    });
-  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -111,6 +117,15 @@ class _farmereInquiryState extends State<UpdateInquiry> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
+                     TextFormField(
+                      decoration: InputDecoration(labelText: 'Famer ID'),
+                      onChanged: (value) {
+                        setState(() {
+                          _fid = value;
+                        });
+                      },
+                    ),
+                    SizedBox(height: 20.0),
                     TextFormField(
                       decoration: InputDecoration(labelText: 'Expected month'),
                       onChanged: (value) {
@@ -197,7 +212,7 @@ class _farmereInquiryState extends State<UpdateInquiry> {
                       decoration: InputDecoration(labelText: 'Fertilizer'),
                       onChanged: (value) {
                         setState(() {
-                          _textField1Value = value; // Storing fertilizer input
+                          _textField3Value = value; // Storing fertilizer input
                         });
                       },
                     ),
